@@ -1,0 +1,16 @@
+version: "2.3"
+
+services:
+  pytorch-ngc:
+    runtime: nvidia
+    container_name: pytorch-ngc
+    image: pytorch-docker
+    ipc: host
+    ports:
+      - 8888:8888
+    volumes:
+      - ./data:/workspace/data
+      - ./models:/workspace/models
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    command: python main.py
